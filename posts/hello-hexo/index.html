@@ -1,35 +1,150 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>hexo入门和使用指南 · 人肉智能</title><meta name="description" content="前言好久都不写文章了，vps也不太稳定（因为便宜，哈），所以一直都已没有时间做为借口而疏于打理，这回用github和hexo，可以打消掉没时间的借口了， 正好git上也有提交次数的记录，也算作对自己的督促吧。
-本篇文章也算是对于hexo使用和资料的收集，不定期的更新。
-更新日志2017.10.30 "><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>hexo入门和使用指南</a></h3></div><div class="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好久都不写文章了，vps也不太稳定（因为便宜，哈），所以一直都已没有时间做为借口而疏于打理，这回用github和hexo，可以打消掉没时间的借口了， 正好git上也有提交次数的记录，也算作对自己的督促吧。</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>hexo入门和使用指南 2017.10.31 · 人肉智能</title><meta name="description" content="hexo入门和使用指南 目录
+
+前言
+更新日志
+关于hexo
+
+安装
+配置
+
+主要配置
+github发布配置
+
+
+基本命令
+
+初始化
+新建文章
+生成静态页面
+部署
+启动服务器
+
+
+
+
+hexo插件
+
+hexo-abbrlink
+hexo-admin
+hexagon
+hexo-renderer-mar"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>hexo入门和使用指南 2017.10.31</a></h3></div><div class="post-content"><h1 id="hexo入门和使用指南-目录"><a class="markdownIt-Anchor" href="#hexo入门和使用指南-目录"></a> hexo入门和使用指南 目录</h1>
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">更新日志</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8Ehexo">关于hexo</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ul>
+<li><a href="#%E4%B8%BB%E8%A6%81%E9%85%8D%E7%BD%AE">主要配置</a></li>
+<li><a href="#github%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE">github发布配置</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">基本命令</a>
+<ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a></li>
+<li><a href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0">新建文章</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2">生成静态页面</a></li>
+<li><a href="#%E9%83%A8%E7%BD%B2">部署</a></li>
+<li><a href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E5%99%A8">启动服务器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#hexo%E6%8F%92%E4%BB%B6">hexo插件</a>
+<ul>
+<li><a href="#hexo-abbrlink">hexo-abbrlink</a></li>
+<li><a href="#hexo-admin">hexo-admin</a></li>
+<li><a href="#hexagon">hexagon</a></li>
+<li><a href="#hexo-renderer-markdown-it-plus">hexo-renderer-markdown-it-plus</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-2">安装</a></li>
+<li><a href="#%E5%86%85%E5%AE%B9%E6%A0%87%E7%AD%BE">内容标签</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE-2">配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#hexo%E4%B8%BB%E9%A2%98">hexo主题</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3">问题解决</a></li>
+</ul>
+</p>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>好久都不写文章了，vps也不太稳定（因为便宜，哈），所以一直都已没有时间做为借口而疏于打理，这回用github和hexo，可以打消掉没时间的借口了， 正好git上也有提交次数的记录，也算作对自己的督促吧。</p>
 <p>本篇文章也算是对于hexo使用和资料的收集，不定期的更新。</p>
-<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>2017.10.30 第一稿完成</p>
-<h2 id="关于hexo"><a href="#关于hexo" class="headerlink" title="关于hexo"></a>关于hexo</h2><p>Hexo升级到3.0后感觉变化很大，使用起来倒是方便了很多。对于其他的静态博客生成框架我也没太多时间去看了：</p>
+<h2 id="更新日志"><a class="markdownIt-Anchor" href="#更新日志"></a> 更新日志</h2>
+<p>2017.10.30 第一稿完成</p>
+<p>2017.10.31 增加 文章的内容大纲插件</p>
+<h2 id="关于hexo"><a class="markdownIt-Anchor" href="#关于hexo"></a> 关于hexo</h2>
+<p>Hexo升级到3.0后感觉变化很大，使用起来倒是方便了很多。对于其他的静态博客生成框架我也没太多时间去看了：</p>
 <p>Jekyll, Octopress没用过（ruby不会）</p>
 <p>hugo也一样（go也不会）</p>
 <p>毕竟nodejs还是比较熟悉的，毕竟还有一些东西是需要定制了，找个熟悉的框架还是好一些，所以就选择hexo吧。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装很简单，我的系统是win10，所以直接官网下载nodejs的安装包和git安装包，安装完毕后，直接输入：</p>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<p>安装很简单，我的系统是win10，所以直接官网下载nodejs的安装包和git安装包，安装完毕后，直接输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
 <p>全局安装即可，具体安装步骤可以参考<a href="https://hexo.io/docs/setup.html" target="_blank" rel="external">hexo官网安装教程</a></p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="主要配置"><a href="#主要配置" class="headerlink" title="主要配置"></a>主要配置</h4><p>timezone:<br>网站时区一定要按照moment的格式。<a href="https://momentjs.com/timezone/" target="_blank" rel="external">moment时区列表</a></p>
-<h4 id="github发布配置"><a href="#github发布配置" class="headerlink" title="github发布配置"></a>github发布配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/zergtant/zergtant.github.io.git</span></div><div class="line"><span class="attr">  branch:</span> <span class="string">master</span></div></pre></td></tr></table></figure>
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure>
-<h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>新建一篇文章。如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替。如果标题包含空格的话，要使用引号括起来。<br>其实可以在生成文章后再修改，因为自动生成的文章标题中文会有问题。</p>
-<h4 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo g <span class="comment">#简写</span></div><div class="line">hexo g -d <span class="comment">#生成完立即发布</span></div></pre></td></tr></table></figure>
-<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">hexo d <span class="comment">#简写</span></div><div class="line">hexo d -g <span class="comment">#发布前先生成静态页面，和上面命令一样</span></div></pre></td></tr></table></figure>
-<h4 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server</div></pre></td></tr></table></figure>
+<h3 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h3>
+<h4 id="主要配置"><a class="markdownIt-Anchor" href="#主要配置"></a> 主要配置</h4>
+<p>timezone:<br>
+网站时区一定要按照moment的格式。<a href="https://momentjs.com/timezone/" target="_blank" rel="external">moment时区列表</a></p>
+<h4 id="github发布配置"><a class="markdownIt-Anchor" href="#github发布配置"></a> github发布配置</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/zergtant/zergtant.github.io.git</span></div><div class="line"><span class="attr">  branch:</span> <span class="string">master</span></div></pre></td></tr></table></figure>
+<h3 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h3>
+<h4 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure>
+<h4 id="新建文章"><a class="markdownIt-Anchor" href="#新建文章"></a> 新建文章</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
+<p>新建一篇文章。如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替。如果标题包含空格的话，要使用引号括起来。<br>
+其实可以在生成文章后再修改，因为自动生成的文章标题中文会有问题。</p>
+<h4 id="生成静态页面"><a class="markdownIt-Anchor" href="#生成静态页面"></a> 生成静态页面</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo g <span class="comment">#简写</span></div><div class="line">hexo g -d <span class="comment">#生成完立即发布</span></div></pre></td></tr></table></figure>
+<h4 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">hexo d <span class="comment">#简写</span></div><div class="line">hexo d -g <span class="comment">#发布前先生成静态页面，和上面命令一样</span></div></pre></td></tr></table></figure>
+<h4 id="启动服务器"><a class="markdownIt-Anchor" href="#启动服务器"></a> 启动服务器</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server</div></pre></td></tr></table></figure>
 <p>发布到github上用处不大，但是可以作为本地预览，如果使用自己的服务器，那这个可以作为web服务器使用，或者安装web管理插件，使用个浏览器编写markdown（我用vscode习惯了，所以不考虑）</p>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p><a href="https://hexo.io/plugins/" target="_blank" rel="external">官方插件列表</a></p>
-<h4 id="hexo-abbrlink"><a href="#hexo-abbrlink" class="headerlink" title="hexo-abbrlink"></a>hexo-abbrlink</h4><p>为每个文章生成链接固定的链接</p>
-<h4 id="hexo-admin"><a href="#hexo-admin" class="headerlink" title="hexo-admin"></a>hexo-admin</h4><p>web管理，通过web可以添加页面，文章等</p>
-<h4 id="hexagon"><a href="#hexagon" class="headerlink" title="hexagon"></a>hexagon</h4><p>类似npm的包管理，我没装，有需要的就用吧</p>
-<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p><a href="https://hexo.io/themes/" target="_blank" rel="external">官方主题列表</a></p>
+<h2 id="hexo插件"><a class="markdownIt-Anchor" href="#hexo插件"></a> hexo插件</h2>
+<p><a href="https://hexo.io/plugins/" target="_blank" rel="external">官方插件列表</a></p>
+<h3 id="hexo-abbrlink"><a class="markdownIt-Anchor" href="#hexo-abbrlink"></a> hexo-abbrlink</h3>
+<p>为每个文章生成链接固定的链接</p>
+<h3 id="hexo-admin"><a class="markdownIt-Anchor" href="#hexo-admin"></a> hexo-admin</h3>
+<p>web管理，通过web可以添加页面，文章等</p>
+<h3 id="hexagon"><a class="markdownIt-Anchor" href="#hexagon"></a> hexagon</h3>
+<p>类似npm的包管理，我没装，有需要的就用吧</p>
+<h3 id="hexo-renderer-markdown-it-plus"><a class="markdownIt-Anchor" href="#hexo-renderer-markdown-it-plus"></a> hexo-renderer-markdown-it-plus</h3>
+<p><a href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus" target="_blank" rel="external">https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus</a></p>
+<h4 id="安装-2"><a class="markdownIt-Anchor" href="#安装-2"></a> 安装</h4>
+<p>安装很简单，用下面的命令替换掉默认的markdown renderer即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm un hexo-renderer-marked --save</div><div class="line">npm i hexo-renderer-markdown-it-plus --save</div></pre></td></tr></table></figure>
+<h4 id="内容标签"><a class="markdownIt-Anchor" href="#内容标签"></a> 内容标签</h4>
+<p>这个插件很好用，除了一些基本的插件以外主要就是用了他的toc功能，他的toc功能的代码为,github上没说明，看了遍代码才知道，哈</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@[toc]</div></pre></td></tr></table></figure>
+<h4 id="配置-2"><a class="markdownIt-Anchor" href="#配置-2"></a> 配置</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="attr">markdown_it_plus:</span></div><div class="line"><span class="attr">    highlight:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    html:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    xhtmlOut:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    breaks:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    langPrefix:</span></div><div class="line"><span class="attr">    linkify:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    typographer:</span></div><div class="line"><span class="attr">    quotes:</span> <span class="string">“”‘’</span></div><div class="line"><span class="attr">    pre_class:</span> <span class="string">highlight</span></div><div class="line"><span class="attr">    plugins:</span></div><div class="line"><span class="attr">        - plugin:</span></div><div class="line"><span class="attr">            name:</span> <span class="string">markdown-it-something</span></div><div class="line"><span class="attr">            enable:</span> <span class="literal">true</span></div><div class="line"><span class="attr">            options:</span></div><div class="line">                <span class="comment"># 插件的设置</span></div></pre></td></tr></table></figure>
+<p>默认开启的插件如下，方便了很多:</p>
+<ul>
+<li>markdown-it-emoji</li>
+<li>markdown-it-sub</li>
+<li>markdown-it-sup</li>
+<li>markdown-it-deflist</li>
+<li>markdown-it-abbr</li>
+<li>markdown-it-footnote</li>
+<li>markdown-it-ins</li>
+<li>markdown-it-mark</li>
+<li>markdown-it-katex</li>
+<li>markdown-it-toc-and-anchor</li>
+</ul>
+<h2 id="hexo主题"><a class="markdownIt-Anchor" href="#hexo主题"></a> hexo主题</h2>
+<p><a href="https://hexo.io/themes/" target="_blank" rel="external">官方主题列表</a></p>
 <p>在官网上找了一个主题anatole，看着还比较清爽，jade实在不习惯，先这么用吧，等有时间了再定制下，功能优先</p>
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>在win10中遇到安装依赖或插件的时候会出现 Error: EPERM: operation not permitted, unlink XXX的提示，好像和权限有关，google了一下，老外也有很多类似的问题，解决方案有2个</p>
+<h2 id="问题解决"><a class="markdownIt-Anchor" href="#问题解决"></a> 问题解决</h2>
+<p>在win10中遇到安装依赖或插件的时候会出现 Error: EPERM: operation not permitted, unlink XXX的提示，好像和权限有关，google了一下，老外也有很多类似的问题，解决方案有2个</p>
 <ol>
-<li>在NPM的时候添加 –no-optional属性</li>
+<li>在NPM的时候添加 --no-optional属性</li>
 <li>我的npm是5.4.1 也有这样的问题，github上说降级到npm到5.03就额没问题，我没测试，不过刚收到了更新现在最新的npm是5.5.1了，目前看这个问题解决了</li>
 </ol>
-<p>问题链接 有问题的去看看吧<br>(<a href="https://github.com/npm/npm/issues/18380" target="_blank" rel="external">https://github.com/npm/npm/issues/18380</a>)</p>
+<p>问题链接 有问题的去看看吧<br>
+(<a href="https://github.com/npm/npm/issues/18380" target="_blank" rel="external">https://github.com/npm/npm/issues/18380</a>)</p>
 <p>至此hexo安装完毕了，剩下的github和gitpage申请什么的介绍就很多了，我也不多写了。</p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-30</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/hello-hexo/,人肉智能的全干开发工程师,hexo入门和使用指南,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-30</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/hello-hexo/,人肉智能的全干开发工程师,hexo入门和使用指南 2017.10.31,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/posts/markdown-useage-example/" title="markdown语法一页入门" class="btn">上一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

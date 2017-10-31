@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>markdown语法一页入门 · 人肉智能</title><meta name="description" content="markdown语法 目录
+
+1. Markdown是什么？
+2. 谁创造了它？
+3. 为什么要使用它？
+4. 怎么使用？
+
+4.1 标题
+4.2 段落
+4.3 区块引用
+4.4 代码区块
+4.5 强调
+4.6 列表
+4.7 分割线
+4.8 链接
+4.9 图片
+4.10 反斜杠\
+4.11 符号’`"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>markdown语法一页入门</a></h3></div><div class="post-content"><h1 id="markdown语法-目录"><a class="markdownIt-Anchor" href="#markdown语法-目录"></a> markdown语法 目录</h1>
+<p><ul class="markdownIt-TOC">
+<li><a href="#1-markdown%E6%98%AF%E4%BB%80%E4%B9%88">1. Markdown<em>是什么</em>？</a></li>
+<li><a href="#2-%E8%B0%81%E5%88%9B%E9%80%A0%E4%BA%86%E5%AE%83">2. <em>谁</em>创造了它？</a></li>
+<li><a href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83">3. <em>为什么</em>要使用它？</a></li>
+<li><a href="#4-%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8">4. <em>怎么</em>使用？</a>
+<ul>
+<li><a href="#41-%E6%A0%87%E9%A2%98">4.1 标题</a></li>
+<li><a href="#42-%E6%AE%B5%E8%90%BD">4.2 段落</a></li>
+<li><a href="#43-%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8">4.3 区块引用</a></li>
+<li><a href="#44-%E4%BB%A3%E7%A0%81%E5%8C%BA%E5%9D%97">4.4 代码区块</a></li>
+<li><a href="#45-%E5%BC%BA%E8%B0%83">4.5 强调</a></li>
+<li><a href="#46-%E5%88%97%E8%A1%A8">4.6 列表</a></li>
+<li><a href="#47-%E5%88%86%E5%89%B2%E7%BA%BF">4.7 分割线</a></li>
+<li><a href="#48-%E9%93%BE%E6%8E%A5">4.8 链接</a></li>
+<li><a href="#49-%E5%9B%BE%E7%89%87">4.9 图片</a></li>
+<li><a href="#410-%E5%8F%8D%E6%96%9C%E6%9D%A0">4.10 反斜杠<code>\</code></a></li>
+<li><a href="#411-%E7%AC%A6%E5%8F%B7">4.11 符号’`’</a></li>
+</ul>
+</li>
+<li><a href="#5%E5%85%B6%E5%AE%83">5.其它</a></li>
+</ul>
+</p>
+<h2 id="1-markdown是什么"><a class="markdownIt-Anchor" href="#1-markdown是什么"></a> 1. Markdown<em>是什么</em>？</h2>
+<p><strong>Markdown</strong>是一种轻量级<strong>标记语言</strong>，它以纯文本形式(<em>易读、易写、易更改</em>)编写文档，并最终以HTML格式发布。<br>
+<strong>Markdown</strong>也可以理解为将以MARKDOWN语法编写的语言转换成HTML内容的工具。</p>
+<h2 id="2-谁创造了它"><a class="markdownIt-Anchor" href="#2-谁创造了它"></a> 2. <em>谁</em>创造了它？</h2>
+<p>它由<a href="http://www.aaronsw.com/" target="_blank" rel="external"><strong>Aaron Swartz</strong></a>和<strong>John Gruber</strong>共同设计，<strong>Aaron Swartz</strong>就是那在 <em>2013年1月11日</em> 自杀,有着<strong>开挂</strong>一般人生经历的程序员。维基百科对他的<a href="http://zh.wikipedia.org/wiki/%E4%BA%9A%E4%BC%A6%C2%B7%E6%96%AF%E6%B2%83%E8%8C%A8" target="_blank" rel="external">介绍</a>是：<strong>软件工程师、作家、政治组织者、互联网活动家、维基百科人</strong>。</p>
+<p>天才都有早逝的归途。</p>
+<h2 id="3-为什么要使用它"><a class="markdownIt-Anchor" href="#3-为什么要使用它"></a> 3. <em>为什么</em>要使用它？</h2>
+<ul>
+<li>它是易读（看起开舒服）、易写（语法简单）、易更改<strong>纯文本</strong>。处处体现着<strong>极简主义</strong>的影子。</li>
+<li>兼容HTML，可以转换为HTML格式发布。</li>
+<li>跨平台使用。</li>
+<li>越来越多的网站支持Markdown。</li>
+<li>更方便清晰的组织你的电子邮件。（Markdown-here, Airmail）</li>
+<li>摆脱Word（我不是认真的）。</li>
+</ul>
+<h2 id="4-怎么使用"><a class="markdownIt-Anchor" href="#4-怎么使用"></a> 4. <em>怎么</em>使用？</h2>
+<p>如果不算<strong>扩展</strong>，Markdown的语法绝对<strong>简单</strong>到让你爱不释手。</p>
+<p>Markdown语法主要分为如下几大部分：<br>
+<strong>标题</strong>，<strong>段落</strong>，<strong>区块引用</strong>，<strong>代码区块</strong>，<strong>强调</strong>，<strong>列表</strong>，<strong>分割线</strong>，<strong>链接</strong>，<strong>图片</strong>，<strong>反斜杠 <code>\</code></strong>，<strong>符号’`’</strong>。</p>
+<h3 id="41-标题"><a class="markdownIt-Anchor" href="#41-标题"></a> 4.1 标题</h3>
+<p>两种形式：这种形式不建议使用，因为层级少，有时候还会出现解析的问题。<br>
+1）使用<code>=</code>和<code>-</code>标记一级和二级标题。</p>
+<blockquote>
+<p>一级标题<br>
+<code>=========</code><br>
+二级标题<br>
+<code>---------</code></p>
+</blockquote>
+<p>2）使用<code>#</code>，可表示1-6级标题。</p>
+<blockquote>
+<p># 一级标题<br>
+## 二级标题<br>
+### 三级标题<br>
+#### 四级标题<br>
+##### 五级标题<br>
+###### 六级标题</p>
+</blockquote>
+<h3 id="42-段落"><a class="markdownIt-Anchor" href="#42-段落"></a> 4.2 段落</h3>
+<p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用<strong>两个以上</strong>空格加上回车（引用中换行省略回车）。</p>
+<h3 id="43-区块引用"><a class="markdownIt-Anchor" href="#43-区块引用"></a> 4.3 区块引用</h3>
+<p>在段落的每行或者只在第一行使用符号<code>&gt;</code>,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>&gt; 区块引用<br>
+&gt;&gt; 嵌套引用</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h3 id="44-代码区块"><a class="markdownIt-Anchor" href="#44-代码区块"></a> 4.4 代码区块</h3>
+<p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样），。如<br>
+普通段落：</p>
+<p>void main()<br>
+{<br>
+printf(“Hello, Markdown.”);<br>
+}</p>
+<p>代码区块：</p>
+<pre><code>void main()
+{
+    printf(&quot;Hello, Markdown.&quot;);
+}
+</code></pre>
+<p><strong>注意</strong>:需要和普通段落之间存在空行。</p>
+<p>新的代码语法为<br>
+``` 嵌套，后面还可以加上语言名称，会自动高亮，例如<br>
+``` c<br>
+代码<br>
+```</p>
+<p>例，这样就好看多了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"> </span>&#123;</div><div class="line">     <span class="built_in">printf</span>(<span class="string">"Hello, Markdown."</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h3 id="45-强调"><a class="markdownIt-Anchor" href="#45-强调"></a> 4.5 强调</h3>
+<p>在强调内容两侧分别加上<code>*</code>或者<code>_</code>，如：</p>
+<blockquote>
+<p>*斜体*，_斜体_<br>
+**粗体**，__粗体__</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em>，<em>斜体</em><br>
+<strong>粗体</strong>，<strong>粗体</strong></p>
+</blockquote>
+<h3 id="46-列表"><a class="markdownIt-Anchor" href="#46-列表"></a> 4.6 列表</h3>
+<p>使用<code>·</code>、<code>+</code>、或<code>-</code>标记无序列表，如：</p>
+<blockquote>
+<p>-（+*） 第一项<br>
+-（+*） 第二项<br>
+- （+*）第三项</p>
+</blockquote>
+<p><strong>注意</strong>：标记后面最少有一个_空格_或_制表符_。若不在引用区块中，必须和前方段落之间存在空行。</p>
+<p>效果：</p>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<p>有序列表的标记方式是将上述的符号换成数字,并辅以<code>.</code>，如：</p>
+<blockquote>
+<p>1 . 第一项<br>
+2 . 第二项<br>
+3 . 第三项</p>
+</blockquote>
+<p>效果：</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h3 id="47-分割线"><a class="markdownIt-Anchor" href="#47-分割线"></a> 4.7 分割线</h3>
+<p>分割线最常使用就是三个或以上<code>*</code>，还可以使用<code>-</code>和<code>_</code>。</p>
+<h3 id="48-链接"><a class="markdownIt-Anchor" href="#48-链接"></a> 4.8 链接</h3>
+<p>链接可以由两种形式生成：<strong>行内式</strong>和<strong>参考式</strong>。<br>
+<strong>行内式</strong>：</p>
+<blockquote>
+<p><code>[我的博客](http://www.tantai.org &quot;人肉智能&quot;)</code></p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><a href="http://www.tantai.org" title="人肉智能">我的博客</a></p>
+</blockquote>
+<p><strong>参考式</strong>：</p>
+<blockquote>
+<p>[hexo][1]<br>
+[github][2]<br>
+<code>[1]:https://hexo.io/ &quot;hexo&quot;</code><br>
+<code>[2]:https://github.com/ &quot;git&quot;</code></p>
+</blockquote>
+<h3 id="49-图片"><a class="markdownIt-Anchor" href="#49-图片"></a> 4.9 图片</h3>
+<p>添加图片的形式和链接相似，只需在链接的基础上前方加一个<code>！</code>。</p>
+<h3 id="410-反斜杠"><a class="markdownIt-Anchor" href="#410-反斜杠"></a> 4.10 反斜杠<code>\</code></h3>
+<p>相当于<strong>反转义</strong>作用。使符号成为普通符号。</p>
+<h3 id="411-符号"><a class="markdownIt-Anchor" href="#411-符号"></a> 4.11 符号’`’</h3>
+<p>起到标记作用。如：</p>
+<blockquote>
+<p>`ctrl+a`</p>
+</blockquote>
+<p>效果：</p>
+<blockquote>
+<p><code>ctrl+a</code></p>
+</blockquote>
+<h2 id="5其它"><a class="markdownIt-Anchor" href="#5其它"></a> 5.其它</h2>
+<p>列表的使用(非traditonal markdown)：</p>
+<p>用<code>|</code>表示表格纵向边界，表头和表内容用<code>-</code>隔开，并可用<code>:</code>进行对齐设置，两边都有<code>:</code>则表示居中，若不加<code>:</code>则默认左对齐。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">列1</th>
+<th>列2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1-1</td>
+<td>1-2</td>
+</tr>
+<tr>
+<td style="text-align:center">2-1</td>
+<td>2-2</td>
+</tr>
+</tbody>
+</table>
+<p>基本使用方法就够了</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-10-31</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/markdown-useage-example/,人肉智能的全干开发工程师,markdown语法一页入门,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/hello-hexo/" title="hexo入门和使用指南 2017.10.31" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

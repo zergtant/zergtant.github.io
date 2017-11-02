@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>深度学习的基本概念 · 人肉智能</title><meta name="description" content="深度学习的基本概念 目录
+
+更新日志
+人工智能、机器学习、深度学习的关系
+什么是深度学习
+深度学习模型结构
+
+前溃深度网络
+反馈深度网络
+双向深度网络
+
+
+深度网络的模型
+
+
+ 更新日志
+2017.11.02 第一稿完成
+ 人工智能、机器学习、深度学习的关系
+在介绍深度学习之前，先要说明下这几个名词"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>深度学习的基本概念</a></h3></div><div class="post-content"><h1 id="深度学习的基本概念-目录"><a class="markdownIt-Anchor" href="#深度学习的基本概念-目录"></a> 深度学习的基本概念 目录</h1>
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">更新日志</a></li>
+<li><a href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%85%B3%E7%B3%BB">人工智能、机器学习、深度学习的关系</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">什么是深度学习</a></li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84">深度学习模型结构</a>
+<ul>
+<li><a href="#%E5%89%8D%E6%BA%83%E6%B7%B1%E5%BA%A6%E7%BD%91%E7%BB%9C">前溃深度网络</a></li>
+<li><a href="#%E5%8F%8D%E9%A6%88%E6%B7%B1%E5%BA%A6%E7%BD%91%E7%BB%9C">反馈深度网络</a></li>
+<li><a href="#%E5%8F%8C%E5%90%91%E6%B7%B1%E5%BA%A6%E7%BD%91%E7%BB%9C">双向深度网络</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A8%A1%E5%9E%8B">深度网络的模型</a></li>
+</ul>
+</p>
+<h2 id="更新日志"><a class="markdownIt-Anchor" href="#更新日志"></a> 更新日志</h2>
+<p>2017.11.02 第一稿完成</p>
+<h2 id="人工智能-机器学习-深度学习的关系"><a class="markdownIt-Anchor" href="#人工智能-机器学习-深度学习的关系"></a> 人工智能、机器学习、深度学习的关系</h2>
+<p>在介绍深度学习之前，先要说明下这几个名词之间的关系。<br>
+盗用一个别人的图：</p>
+<p><img src="/image/deeplearning-basic-concept/1.jpg" alt="人工智能、机器学习、深度学习的关系"></p>
+<blockquote>
+<p>人工智能(Artificial Intelligence)</p>
+<p>为机器赋予人的智能</p>
+</blockquote>
+<blockquote>
+<p>机器学习</p>
+<p>一种实现人工智能的方法</p>
+</blockquote>
+<blockquote>
+<p>深度学习</p>
+<p>一种实现机器学习的技术</p>
+</blockquote>
+<h2 id="什么是深度学习"><a class="markdownIt-Anchor" href="#什么是深度学习"></a> 什么是深度学习</h2>
+<p>先把这四个字拆解成两个词，“深度”和“学习”。</p>
+<p>任何的从已经有的信息，无论是通过计算，判断，推理而后得到一个认知的过程都可以称为“学习”。<br>
+有的人学习好，有的人学习不好，这经常的被解释为学习方法，思考过程，经验不同而导致的差异，可以统一归为“学习策略”，好的学习策略会更快更准确的得到认知的结果，而不好的学习策略可能会花费更多的时间或者错误的结论。这个学习的策略在机器学习领域来说可以归结为模型，一个好的模型就能够促成好的学习成绩。</p>
+<p>现实世界中很多的问题都可以归为分类或者识别或者选择的问题，学术界研究出来一种叫做“神经网络”的学习策略。<br>
+这个词听起来，就知道和人脑有着一些关系。在人脑中负责活动的基本单元是“神经元”，它以细胞体为主体，由许多向周围延伸的不规则树枝状纤维构成的神经细胞，我们把神经元的结构想象成一棵枯树的枝干就可以了。人脑中含有上百亿个神经元，而这些神经元互相连接成一个更庞大的结构，就称为“神经网络”。<br>
+学术界试图模仿人脑的“神经网络“建立一个类似的学习策略，也取名为”神经网络“。</p>
+<p>继续盗图：<br>
+<img src="/image/deeplearning-basic-concept/2.jpg" alt="神经网络图"></p>
+<p>神经网络由输入层，隐藏层和输出层组成，上图的L1和L2分别是输入层和输出层，L2和L3就是隐藏层。从解决问题的来说，解题的过程是不用写出来的，这里题目越难，给出的信息可能是越多的，而解题所需要的过程就越复杂的，也就可能需要更多的”隐藏层“来计算最终的结果。<br>
+但是由于到目前，还无法知道人脑工作的复杂性，所以这两个神经网络也只能是形似而已。</p>
+<p>人脑神经网络和计算机神经网络的不同在于，人脑可以解决通用性和跨领域的问题，说的明白一些，机器只能解决理性的问题，感性的问题目前还解决不了，比如说AlphaGo可以赢得围棋，但是他不会告诉你，他面前的两个女生谁更漂亮。</p>
+<p>深度学习之所以被称为’深度’，是相对支持向量机(supportvector machine, SVM)、提升方法(boosting)、最大熵方法等’浅层学习’方法而言的，深度学习所学得的模型中，非线性操作的层级数更多。浅层学习依靠人工经验抽取样本特征，网络模型学习后获得的是没有层次结构的单层特征；而深度学习通过对原始信号进行逐层特征变换，将样本在原空间的特征表示变换到新的特征空间，自动地学习得到层次化的特征表示，从而更有利于分类或特征的可视化。深度学习理论的另外一个理论动机是：如果一个函数可用k层结构以简洁的形式表达，那么用k-1层的结构表达则可能需要指数级数量的参数(相对于输入信号)，且泛化能力不足。这样虽然解决了复杂性，但是由于是自动学习得到特征，得到特征的过程就变成了黑盒，所以对于研究者来说无法看到训练的过程，这个在后面的文章中会有所提及。</p>
+<p>综上所述：深度学习就是用多层次的分析和计算手段，得到结果的一种方法。</p>
+<h2 id="深度学习模型结构"><a class="markdownIt-Anchor" href="#深度学习模型结构"></a> 深度学习模型结构</h2>
+<h3 id="前溃深度网络"><a class="markdownIt-Anchor" href="#前溃深度网络"></a> 前溃深度网络</h3>
+<p>前馈神经网络是最初的人工神经网络模型之一。在这种网络中，信息只沿一个方向流动，从输入单元通过一个或多个隐层到达输出单元，在网络中没有封闭环路。<br>
+典型的前馈神经网络有多层感知机和卷积神经网络。</p>
+<h3 id="反馈深度网络"><a class="markdownIt-Anchor" href="#反馈深度网络"></a> 反馈深度网络</h3>
+<p>与前馈网络不同，反馈网络并不是对输入信号进行编码，而是通过解反卷积或学习数据集的基，对输入信号进行反解。前馈网络是对输入信号进行编码的过程，而反馈网络则是对输入信号解码的过程。</p>
+<h3 id="双向深度网络"><a class="markdownIt-Anchor" href="#双向深度网络"></a> 双向深度网络</h3>
+<p>双向网络由多个编码器层和解码器层叠加形成，每层可能是单独的编码过程或解码过程，也可能同时包含编码过程和解码过程。双向网络的结构结合了编码器和解码器2类单层网络结构，双向网络的学习则结合了前馈网络和反馈网络的训练方法，通常包括单层网络的预训练和逐层反向迭代误差2个部分，单层网络的预训练多采用贪心算法：每层使用输入信号IL与权值w计算生成信号IL 1传递到下一层，信号IL 1再与相同的权值w计算生成重构信号I’L 映射回输入层，通过不断缩小IL与I’L间的误差，训练每层网络。网络结构中各层网络结构都经过预训练之后，再通过反向迭代误差对整个网络结构进行权值微调。其中单层网络的预训练是对输入信号编码和解码的重建过程，这与反馈网络训练方法类似；而基于反向迭代误差的权值微调与前馈网络训练方法类似。</p>
+<h2 id="深度网络的模型"><a class="markdownIt-Anchor" href="#深度网络的模型"></a> 深度网络的模型</h2>
+<p>待续</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-02</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/deeplearning-basic-concept/,人肉智能的全干开发工程师,深度学习的基本概念,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/markdown-useage-example/" title="markdown语法一页入门" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>

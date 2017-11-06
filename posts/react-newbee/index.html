@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>react新手指南：一篇文章读懂react · 人肉智能</title><meta name="description" content="react新手指南：一篇文章读懂react 目录
+
+0.更新日志
+1.React解决了什么问题？
+
+1.1 React实现了Virtual DOM
+1.2 React的一个核心思想是声明式编程。
+1.3 组件化
+1.4 单向数据流
+
+
+2.react的概念要点
+
+2.1 组件的生命周期
+2.2 组件"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>react新手指南：一篇文章读懂react</a></h3></div><div class="post-content"><h1 id="react新手指南一篇文章读懂react-目录"><a class="markdownIt-Anchor" href="#react新手指南一篇文章读懂react-目录"></a> react新手指南：一篇文章读懂react 目录</h1>
+<p><ul class="markdownIt-TOC">
+<li><a href="#0%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">0.更新日志</a></li>
+<li><a href="#1react%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">1.React解决了什么问题？</a>
+<ul>
+<li><a href="#11-react%E5%AE%9E%E7%8E%B0%E4%BA%86virtual-dom">1.1 React实现了Virtual DOM</a></li>
+<li><a href="#12-react%E7%9A%84%E4%B8%80%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%98%AF%E5%A3%B0%E6%98%8E%E5%BC%8F%E7%BC%96%E7%A8%8B">1.2 React的一个核心思想是声明式编程。</a></li>
+<li><a href="#13-%E7%BB%84%E4%BB%B6%E5%8C%96">1.3 组件化</a></li>
+<li><a href="#14-%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81">1.4 单向数据流</a></li>
+</ul>
+</li>
+<li><a href="#2react%E7%9A%84%E6%A6%82%E5%BF%B5%E8%A6%81%E7%82%B9">2.react的概念要点</a>
+<ul>
+<li><a href="#21-%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">2.1 组件的生命周期</a></li>
+<li><a href="#22-%E7%BB%84%E4%BB%B6%E7%9A%84render%E5%87%BD%E6%95%B0%E4%BD%95%E6%97%B6%E8%A2%AB%E8%B0%83%E7%94%A8">2.2 组件的render函数何时被调用</a></li>
+<li><a href="#23-render%E6%97%B6dom%E5%B0%B1%E4%B8%80%E5%AE%9A%E4%BC%9A%E8%A2%AB%E6%9B%B4%E6%96%B0%E5%90%97">2.3 render时DOM就一定会被更新吗</a></li>
+<li><a href="#24-state%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98">2.4 state的相关问题</a>
+<ul>
+<li><a href="#241-%E8%BF%9C%E7%A8%8B%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E6%97%B6%E5%BA%94%E8%AF%A5%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%91%A8%E6%9C%9F%E4%B8%AD%E5%AE%8C%E6%88%90">2.4.1 远程数据加载时，应该在哪个周期中完成</a></li>
+<li><a href="#242-%E5%9C%A8%E5%93%AA%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E7%BB%84%E4%BB%B6%E7%9A%84state">2.4.2 在哪些生命周期中可以修改组件的state</a></li>
+<li><a href="#243-state%E9%87%8C%E5%BA%94%E8%AF%A5%E6%9C%89%E4%BB%80%E4%B9%88">2.4.3 state里应该有什么</a></li>
+<li><a href="#244-%E8%B0%83%E7%94%A8setstate%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E4%BA%8B">2.4.4 调用setState时，发生了什么事</a></li>
+<li><a href="#245-%E4%B8%8D%E5%90%8C%E7%88%B6%E8%8A%82%E7%82%B9%E7%9A%84%E7%BB%84%E4%BB%B6%E9%9C%80%E8%A6%81%E5%AF%B9%E5%BD%BC%E6%AD%A4%E7%9A%84%E7%8A%B6%E6%80%81%E8%BF%9B%E8%A1%8C%E6%94%B9%E5%8F%98%E6%97%B6%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0">2.4.5 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现</a></li>
+</ul>
+</li>
+<li><a href="#25-%E4%BA%8B%E4%BB%B6%E5%9C%A8react%E4%B8%AD%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F">2.5 事件在React中的处理方式</a></li>
+</ul>
+</li>
+<li><a href="#3react%E6%8A%80%E5%B7%A7">3.react技巧</a>
+<ul>
+<li><a href="#31-%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%BB%84%E4%BB%B6">3.1 如何设计一个好组件</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="0更新日志"><a class="markdownIt-Anchor" href="#0更新日志"></a> 0.更新日志</h2>
+<p>2017.11.06 第一版</p>
+<h2 id="1react解决了什么问题"><a class="markdownIt-Anchor" href="#1react解决了什么问题"></a> 1.React解决了什么问题？</h2>
+<h3 id="11-react实现了virtual-dom"><a class="markdownIt-Anchor" href="#11-react实现了virtual-dom"></a> 1.1 React实现了Virtual DOM</h3>
+<p>在一定程度上提升了性能，尤其是在进行小量数据更新时。因为DOM操作是很耗性能的，而Virtual DOM是在内存中进行操作的，当数据发生变化时，通过diff算法比较两棵树之间的变化，再进行必要的DOM更新，省去了不必要的高消耗的DOM操作。当然，这种性能优化主要体现在有小量数据更新的情况下。因为React的基本思维模式是每次有变动就重新渲染整个应用，简单想来就是直接重置innerHTML，比如说在一个大型列表所有数据都变动的情况下，重置innerHTML还比较合理，但若是只有一行数据变了，它也需要重置整个innerHTML，就会造成大量的浪费。而Virtual DOM虽然进行了JS层面的计算，但是比起DOM操作来说，简直不要太便宜。</p>
+<h3 id="12-react的一个核心思想是声明式编程"><a class="markdownIt-Anchor" href="#12-react的一个核心思想是声明式编程"></a> 1.2 React的一个核心思想是声明式编程。</h3>
+<p>命令式编程是解决做什么的问题，就像是下命令一样，关注于怎么做，而声明式编程关注于得到什么结果，在React中，我们只需要关注“目前的状态是什么”，而不是“我需要做什么让页面变成目前的状态”。React就是不断声明，然后在特定的参数下渲染UI界面。这种编程方式可以让我们的代码更容易被理解，从而易于维护。</p>
+<h3 id="13-组件化"><a class="markdownIt-Anchor" href="#13-组件化"></a> 1.3 组件化</h3>
+<p>React天生组件化，我们可以将一个大的应用分割成很多小组件，这样有好几个优势。首先组件化的代码像一棵树一样清楚干净，比起传统的面条式代码可读性更高；其次前端人员在开发过程中可以并行开发组件而不影响，大大提高了开发效率；最重要的是，组件化使得复用性大大提高，团队可以沉淀一些公共组件或工具库。</p>
+<h3 id="14-单向数据流"><a class="markdownIt-Anchor" href="#14-单向数据流"></a> 1.4 单向数据流</h3>
+<p>在React中数据流是单向的，由父节点流向子节点，如果父节点的props发生了变化，那么React会递归遍历整个组件树，重新渲染所有使用该属性的子组件。这种单向的数据流一方面比较清晰不容易混乱，另一方面是比较好维护，出了问题也比较好定位。</p>
+<h2 id="2react的概念要点"><a class="markdownIt-Anchor" href="#2react的概念要点"></a> 2.react的概念要点</h2>
+<h3 id="21-组件的生命周期"><a class="markdownIt-Anchor" href="#21-组件的生命周期"></a> 2.1 组件的生命周期</h3>
+<p>盗图两张：</p>
+<p><img src="/image/react-newbee/1.jpg" alt="react组件生命周期"></p>
+<p><img src="/image/react-newbee/2.png" alt="react父子组件关系"></p>
+<p>组件生命周期有三种阶段：初始化阶段（Mounting）、更新阶段（Updating）、析构阶段（Unmouting）。</p>
+<p><strong>初始化阶段：</strong></p>
+<ul>
+<li>constructor()：初始化state、绑定事件</li>
+<li>componentWillMount()：在render()之前执行，除了同构，跟constructor没啥差别</li>
+<li>render()：用于渲染DOM。如果有操作DOM或和浏览器打交道的操作，最好在下一个步骤执行。</li>
+<li>componentDidMount()：在render()之后立即执行，可以在这个函数中对DOM就进行操作，可以加载服务器数据，可以使用setState()方法触发重新渲染</li>
+</ul>
+<p><strong>组件更新阶段：</strong></p>
+<ul>
+<li>componentWillReceiveProps(nextProps)：在已挂载的组件接收到新props时触发，传进来的props没有变化也可能触发该函数，若需要实现props变化才执行操作的话需要自己手动判断</li>
+<li>componentShouldUpdate(nextProps，nextState)：默认返回true，我们可以手动判断需不需要触发render，若返回false，就不触发下一步骤</li>
+<li>componentWillUpdate()：componentShouldUpdate返回true时触发，在render之前，可以在里面进行操作DOM</li>
+<li>render()：重渲染</li>
+<li>componentDidUpdate()：render之后立即触发</li>
+</ul>
+<p><strong>组件卸载阶段：</strong></p>
+<ul>
+<li>componentWillUnmount()：在组件销毁之前触发，可以处理一些清理操作，如无效的timers等</li>
+<li>componentDidMount()：卸载后立即触发</li>
+</ul>
+<h3 id="22-组件的render函数何时被调用"><a class="markdownIt-Anchor" href="#22-组件的render函数何时被调用"></a> 2.2 组件的render函数何时被调用</h3>
+<ul>
+<li>组件state发生改变时会调用render函数，比如通过setState函数改变组件自身的state值</li>
+<li>继承的props属性发生改变时也会调用render函数，即使改变的前后值一样</li>
+<li>React生命周期中有个componentShouldUpdate函数，默认返回true，即允许render被调用，我们也可以重写这个函数，判断是否应该调用render函数</li>
+</ul>
+<h3 id="23-render时dom就一定会被更新吗"><a class="markdownIt-Anchor" href="#23-render时dom就一定会被更新吗"></a> 2.3 render时DOM就一定会被更新吗</h3>
+<p>React组件中存在两类DOM，render函数被调用后， React会根据props或者state重新创建一棵virtual DOM树，虽然每一次调用都重新创建，但因为创建是发生在内存中，所以很快不影响性能。而 virtual dom的更新并不意味着真实DOM的更新，React采用diff算法将virtual DOM和真实DOM进行比较，找出需要更新的最小的部分，这时Real DOM才可能发生修改。</p>
+<p>所以每次state的更改都会使得render函数被调用，但是页面DOM不一定发生修改</p>
+<h3 id="24-state的相关问题"><a class="markdownIt-Anchor" href="#24-state的相关问题"></a> 2.4 state的相关问题</h3>
+<h4 id="241-远程数据加载时应该在哪个周期中完成"><a class="markdownIt-Anchor" href="#241-远程数据加载时应该在哪个周期中完成"></a> 2.4.1 远程数据加载时，应该在哪个周期中完成</h4>
+<p>最好是在componentDidMount中进行异步请求。如果我们将ajax请求放在生命周期其他函数中，如constructor或componentWIllMount中，我们并不能保证请求仅在组件挂载完毕后才响应。如果我们的数据请求在组件挂载前就完成，并调用setState函数将数据添加到组件状态中，对于未挂载的组件会报错。而在componentDidMount中进行ajax请求能有效避免这个问题。</p>
+<p>React 下一代调和算法 Fiber 会通过开始或停止渲染的方式优化应用性能，其会影响到 componentWillMount 的触发次数。对于 componentWillMount 这个生命周期函数的调用次数会变得不确定，React 可能会多次频繁调用 componentWillMount。如果我们将 AJAX 请求放到 componentWillMount 函数中，那么显而易见其会被触发多次，自然也就不是好的选择。</p>
+<p>顺便说说componentWillMount函数，这个方法是在render前立刻执行的，也是服务器渲染中唯一调用的钩子，其实除了同构的需求，通常情况下可以用constructor()方法代替。</p>
+<h4 id="242-在哪些生命周期中可以修改组件的state"><a class="markdownIt-Anchor" href="#242-在哪些生命周期中可以修改组件的state"></a> 2.4.2 在哪些生命周期中可以修改组件的state</h4>
+<ul>
+<li>componentDidMount和componentDidUpdate</li>
+<li>constructor、componentWillMount中setState会发生错误:setState只能在mounted或mounting组件中执行</li>
+<li>componentWillUpdate中setState会导致死循环</li>
+</ul>
+<h4 id="243-state里应该有什么"><a class="markdownIt-Anchor" href="#243-state里应该有什么"></a> 2.4.3 state里应该有什么</h4>
+<p>应该有啥：</p>
+<ul>
+<li>事件函数可能进行修改的会导致UI进行渲染的数据</li>
+</ul>
+<p>不应该有啥：</p>
+<ul>
+<li>计算得出的值</li>
+<li>React组件</li>
+<li>props复制来的数据</li>
+</ul>
+<h4 id="244-调用setstate时发生了什么事"><a class="markdownIt-Anchor" href="#244-调用setstate时发生了什么事"></a> 2.4.4 调用setState时，发生了什么事</h4>
+<p>调用setState时，react会做的第一件事就是将传递给setState的对象合并到组件的当前状态，然后会触发调和过程。经过调和过程，React会以相对高效的方式根据新的状态构建React元素树，并准备重新渲染整个UI界面。在React得到元素树后，React会通过diff算法算出新的树与老树之间的节点差异，然后根据差异对界面进行最小化重渲染。在diff算法中，React能够相对精确地算出哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
+<h4 id="245-不同父节点的组件需要对彼此的状态进行改变时应该怎么实现"><a class="markdownIt-Anchor" href="#245-不同父节点的组件需要对彼此的状态进行改变时应该怎么实现"></a> 2.4.5 不同父节点的组件需要对彼此的状态进行改变时应该怎么实现</h4>
+<p>Redux</p>
+<h3 id="25-事件在react中的处理方式"><a class="markdownIt-Anchor" href="#25-事件在react中的处理方式"></a> 2.5 事件在React中的处理方式</h3>
+<p>React在virtual DOM的基础上实现了一个SyntheticEvent（合成事件）层，所有事件都绑定到最外层上。</p>
+<p>在React底层，主要对合成事件做了两件事：事件委托和自动绑定。</p>
+<p>事件委托：React的事件代理机制不会把事件处理函数直接绑定到真实的结点上，而是把所有事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部的事件监听和处理函数。当事件发生时，首先被这个统一的事件监听器处理，然后在映射里找到真正的事件处理函数并调用。</p>
+<p>自动绑定：在React组件中，每个方法的上下文都会指向该组件的实例，即自动绑定this为当前组件。在使用ES6 classes和纯函数时，这种自动绑定就不存在了，需要我们手动绑定this：bind方法、双冒号语法、构造器内声明、箭头函数。</p>
+<h2 id="3react技巧"><a class="markdownIt-Anchor" href="#3react技巧"></a> 3.react技巧</h2>
+<h3 id="31-如何设计一个好组件"><a class="markdownIt-Anchor" href="#31-如何设计一个好组件"></a> 3.1 如何设计一个好组件</h3>
+<p>组件的主要目的是为了更好的复用，所以在设计组件的时候需要遵循高内聚低耦合的原则。</p>
+<ul>
+<li>可以通过遵循几种设计模式原则来达到高复用的目的，比如单一职责原则：React推崇的是“组合”而非“继承”，所以在设计时尽量不设计大的组件，而是开发若干个单一功能的组件，重点就是每个组件只做一件事；开放/封闭原则，就是常说的对修改封闭，对扩展开放。在React中我们可以用高阶组件来实现。</li>
+<li>使用高阶组件来实现组件的复用。高阶组件就是一个包装了另一个React组件的React组件，它包括属性代理（高阶组件操控着传递给被包裹组件的属性）和反向继承（实际上高阶组件继承被包裹组件）。我们可以用高阶组件实现代码复用，逻辑抽象。</li>
+<li>使用容器组件来处理逻辑，展示组件来展示数据（也就是逻辑处理与数据展示分离）。比如可以在容器组件中进行数据的请求与处理，然后将处理后的数据传递给展示组件，展示组件只负责展示，这样容器组件和展示组件就可以更好地复用了。</li>
+<li>编写组件代码时要符合规范，总之就是要可读性强、复用性高、可维护性好。</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-06</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/react-newbee/,人肉智能的全干开发工程师,react新手指南：一篇文章读懂react,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/deeplearning-basic-concept/" title="深度学习的基本概念" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>

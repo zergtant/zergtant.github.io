@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>Centos环境下Spring Boot集成的Tomcat第一次启动缓慢 · 人肉智能</title><meta name="description" content="Centos环境下Spring Boot集成的Tomcat第一次启动缓慢的一次解决过程
+ 起因
+最近的项目是使用spring boot做微服务的开发，使用的spring boot内置的tomcat 8.0作为容器，在spring boot第一次启动的时候发现只要调用的getSession()方法获取"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li><li><a href="/website">有用的网站</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Centos环境下Spring Boot集成的Tomcat第一次启动缓慢</a></h3></div><div class="post-content"><h1 id="centos环境下spring-boot集成的tomcat第一次启动缓慢的一次解决过程"><a class="markdownIt-Anchor" href="#centos环境下spring-boot集成的tomcat第一次启动缓慢的一次解决过程"></a> Centos环境下Spring Boot集成的Tomcat第一次启动缓慢的一次解决过程</h1>
+<h2 id="起因"><a class="markdownIt-Anchor" href="#起因"></a> 起因</h2>
+<p>最近的项目是使用spring boot做微服务的开发，使用的spring boot内置的tomcat 8.0作为容器，在spring boot第一次启动的时候发现只要调用的getSession()方法获取或创建新的session，页面展示过程就会耗费了很长的时间，然后下一次就不会出现这种情况。</p>
+<h2 id="问题浮现"><a class="markdownIt-Anchor" href="#问题浮现"></a> 问题浮现</h2>
+<p>spring boot第一次启动后：</p>
+<ul>
+<li>第一次访问数据库，速度很快。pass</li>
+<li>第一次访问通过模板生成的页面，我们使用pebble最为服务器短的模板引擎，速度也很快。 pass</li>
+<li>调用getSession(false) 方法，获取session，没有session的话不创建新的，速度也很快。 pass</li>
+<li>调用getSession() 方法，在没有session的时候会创建新的session并返回，第一次速度非常慢，第二次就很快。</li>
+</ul>
+<p>根据以上的判断，肯定是session在创建时花费了很多的时间，问题有了一些眉目。</p>
+<h2 id="定位"><a class="markdownIt-Anchor" href="#定位"></a> 定位</h2>
+<p>google了半天，找到了一些解决方法，大意都是：<br>
+tomcat的session id的生成主要通过java.security.SecureRandom生成随机数来实现，随机数算法使用的是”SHA1PRNG”。在sun/oracle的jdk里，这个算法的提供者在底层依赖到操作系统提供的随机数据，在linux上，与之相关的是/dev/random和/dev/urandom。有关它俩的描述如下：<br>
+/dev/random</p>
+<p>在读取时，/dev/random设备会返回小于熵池噪声总数的随机字节。/dev/random可生成高随机性的公钥或一次性<br>
+密码本。若熵池空了，对/dev/random的读操作将会被阻塞，直到收集到了足够的环境噪声为止。<br>
+/dev/urandom</p>
+<p>dev/random的一个副本是/dev/urandom （”unlocked”，非阻塞的随机数发生器），它会重复使用熵池中的数据<br>
+以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它<br>
+可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。</p>
+<p>在tomcat的文档里的建议，采用非阻塞的熵源(entropy source)，通过java系统属性来设置：<br>
+-Djava.security.egd=file:/dev/./urandom</p>
+<p>这个系统属性egd表示熵收集守护进程(entropy gathering daemon)，但这里值为何要在dev和random之间加一个点呢？是因为一个jdk的bug，在这个bug的连接里有人反馈及时对 securerandom.source 设置为 /dev/urandom 它也仍然使用的 /dev/random，有人提供了变通的解决方法，其中一个变通的做法是对securerandom.source设置为 /dev/./urandom 才行。</p>
+<h2 id="解决1"><a class="markdownIt-Anchor" href="#解决1"></a> 解决1</h2>
+<p>那么问题就来了，一个一个测试，当然不修改配置文件是最好的<br>
+那么按照说法我在执行jar包的时候使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar package.jar -Djava.security.egd=file:/dev/./urandom</div></pre></td></tr></table></figure>
+<p>应该使能够得到解决，但是坑就坑在了这里，执行了半天，没有任何改版，难道不是这个原因吗，于是又开始找解决方案，把java的配置都dump下来，对比也没见有什么差异，当要放弃的时候，最后决定改下配置文件，于是问题就解决了</p>
+<h2 id="最终的解决方案"><a class="markdownIt-Anchor" href="#最终的解决方案"></a> 最终的解决方案</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim <span class="variable">$JAVA_HOME</span>/jre/lib/security/java.security</div></pre></td></tr></table></figure>
+<p>找到 <code>securerandom.source=file:/dev/random</code><br>
+改为 <code>securerandom.source=file:/dev/./urandom</code><br>
+保存，然后再启动就解决了。</p>
+<p>这个配置就太坑了-Djava.security.egd 是无效的，为了这个事情浪费了3天的时间，不过最终还是解决了，也算没有白忙。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-14</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/centos-tomcat-session-slow/,人肉智能的全干开发工程师,Centos环境下Spring Boot集成的Tomcat第一次启动缓慢,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/python-and-deeplearning/" title="为深度学习人员准备的Python快速入门教程" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>

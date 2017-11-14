@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>win 10 下安装星际争霸2的ai项目deepmind pysc2指南 · 人肉智能</title><meta name="description" content="win 10 下安装星际争霸2的ai项目deepmind pysc2指南目录
+
+更新日志
+介绍
+环境
+安装步骤
+测试
+学习样例
+常见问题
+
+TypeError: parse() got an unexpected keyword argument ‘transport_encoding’
+
+
+最后
+"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li><li><a href="/website">有用的网站</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>win 10 下安装星际争霸2的ai项目deepmind pysc2指南</a></h3></div><div class="post-content"><h1 id="win-10-下安装星际争霸2的ai项目deepmind-pysc2指南目录"><a class="markdownIt-Anchor" href="#win-10-下安装星际争霸2的ai项目deepmind-pysc2指南目录"></a> win 10 下安装星际争霸2的ai项目deepmind pysc2指南目录</h1>
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">更新日志</a></li>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83">环境</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4">安装步骤</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E6%A0%B7%E4%BE%8B">学习样例</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>
+<ul>
+<li><a href="#typeerror-parse-got-an-unexpected-keyword-argument-transport_encoding">TypeError: parse() got an unexpected keyword argument ‘transport_encoding’</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%90%8E">最后</a></li>
+</ul>
+</p>
+<h2 id="更新日志"><a class="markdownIt-Anchor" href="#更新日志"></a> 更新日志</h2>
+<p>2017.11.10 创建</p>
+<h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
+<p>DeepMind联合暴雪娱乐共同发布了星际争霸2人工智能研究环境SC2LE（StarCraft II Learning Environment）。国内多个渠道都在第一时间对官方博客<a href="http://link.zhihu.com/?target=https%3A//deepmind.com/blog/deepmind-and-blizzard-open-starcraft-ii-ai-research-environment/" target="_blank" rel="external">DeepMind and Blizzard open StarCraft II as an AI research environment</a>进行了译载。</p>
+<p>网上基本都是linux下的安装教程，我自己在win10下安装了一下，顺便写个教程。</p>
+<h2 id="环境"><a class="markdownIt-Anchor" href="#环境"></a> 环境</h2>
+<ul>
+<li>win10</li>
+<li>星际2 国服 3.19.1 官方说3.16以上均可</li>
+<li>anaconda 5.0</li>
+<li>python3.6</li>
+<li>Tensorflow 1.4</li>
+<li>keras (这个没用，哈)</li>
+<li>git 必备</li>
+</ul>
+<h2 id="安装步骤"><a class="markdownIt-Anchor" href="#安装步骤"></a> 安装步骤</h2>
+<ol>
+<li>确保星际版本在3.16以上，我用的是国服免费版本3.19.1</li>
+<li>在环境变量中添加 SC2PATH 指向星际2的目录，是否设置成功可以在cmd用 <code>echo %SC2PATH%</code> 查看，显示实际地址例如我的 <code>D:\game\StarCraft II</code> 则没有问题</li>
+<li>安装基线库 <code>pip install baselines</code> 因为我装keras的时候已经安装完TF了，所以就直接装baselines就可以了，没有的话要装Tensorflow，因为后面的例子要用OpenAI的基线库实现增强模型。而OpenAI的基线库依赖于Tensorflow，OpenAI的基线是Deep Q-Network的一个实现，所以这几个包都要装了。</li>
+<li>安装pysc2 <code>pip install pysc2</code>,如果遇到问题，可以看常见问题</li>
+</ol>
+<h2 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h2>
+<ol>
+<li>
+<p>下载测试地图 <a href="https://github.com/deepmind/pysc2/releases/download/v1.0/mini_games.zip" target="_blank" rel="external">https://github.com/deepmind/pysc2/releases/download/v1.0/mini_games.zip</a> 复制到星际2的地图目录 <code>%SC2PATH%/StarCraft II/Maps/mini_games</code> 目录没有的话就创建</p>
+</li>
+<li>
+<p>使用命令 <code>python -m pysc2.bin.agent --map CollectMineralShards --agent pysc2.agents.scripted_agent.CollectMineralShards</code> 如果出现星际的界面，则说明大功告成.</p>
+</li>
+</ol>
+<h2 id="学习样例"><a class="markdownIt-Anchor" href="#学习样例"></a> 学习样例</h2>
+<ol>
+<li>下载别人写好的测试 <code>git clone https://github.com/chris-chris/pysc2-examples</code> 可能是我网不好，这个步骤有点慢，多试几次。</li>
+<li>用这个exapmle来训练，测试下环境安装 <code>python train_mineral_shards.py --algorithm=a2c</code></li>
+<li>然后测试下训练的结果吧 <code>python enjoy_mineral_shards.py</code></li>
+</ol>
+<h2 id="常见问题"><a class="markdownIt-Anchor" href="#常见问题"></a> 常见问题</h2>
+<h3 id="typeerror-parse-got-an-unexpected-keyword-argument-transport_encoding"><a class="markdownIt-Anchor" href="#typeerror-parse-got-an-unexpected-keyword-argument-transport_encoding"></a> TypeError: parse() got an unexpected keyword argument ‘transport_encoding’</h3>
+<p>如果出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">TypeError: parse() got an unexpected keyword argument &apos;transport_encoding&apos; </div><div class="line"> namespaceHTMLElements=False,</div></pre></td></tr></table></figure>
+<p>的提示，说明你的html5lib版本旧 使用俩条命令的任意一条升级下就好了（我装的是anacoda）<br>
+python就这毛病，哎</p>
+<p><code>conda upgrade pip</code></p>
+<p>或</p>
+<p><code>conda install -c anaconda html5lib</code></p>
+<h2 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h2>
+<p>星际2好就好在有银河编辑器可以自己设计地图自己训练</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-10</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/install-pysc2-on-windows-10/,人肉智能的全干开发工程师,win 10 下安装星际争霸2的ai项目deepmind pysc2指南,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/posts/python-and-deeplearning/" title="为深度学习人员准备的Python快速入门教程" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/posts/react-newbee/" title="react新手指南：一篇文章读懂react" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>

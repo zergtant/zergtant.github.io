@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>Gitbook 入门教程 · 人肉智能</title><meta name="description" content="Gitbook 入门教程
+ gitbook 介绍
+GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书。使用gitbook生成的电子书还可以直接上传到gitbook.com
+ gitbook.com使用
+gitbook.co"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li><li><a href="/website">有用的网站</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Gitbook 入门教程</a></h3></div><div class="post-content"><h1 id="gitbook-入门教程"><a class="markdownIt-Anchor" href="#gitbook-入门教程"></a> Gitbook 入门教程</h1>
+<h2 id="gitbook-介绍"><a class="markdownIt-Anchor" href="#gitbook-介绍"></a> gitbook 介绍</h2>
+<p>GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书。<a href="http://xn--gitbookgitbook-mc7vt8by9cn4aj5cb40ad2ill6bsp6a36ht57iqgajnm73a7idwv6y.com" target="_blank" rel="external">使用gitbook生成的电子书还可以直接上传到gitbook.com</a></p>
+<h2 id="gitbookcom使用"><a class="markdownIt-Anchor" href="#gitbookcom使用"></a> gitbook.com使用</h2>
+<p>gitbook.com的使用很简单，<a href="http://blog.csdn.net/axi295309066/article/details/61420694" target="_blank" rel="external">这篇文章</a>介绍的很详细，直接看吧，我就不复制了。</p>
+<p>需要说明的有两个：</p>
+<p>一个是gitbook默认没有开启生成pdf，epub等的选线，需要在设置中手动开启。</p>
+<p>另外一个就是最主要的两个文件是<code>readme.md</code> 和 <code>summary.md</code></p>
+<p><code>readme.md</code>可以理解为是封面,主要是图书介绍之类的内容</p>
+<p><code>summary.md</code> 就是目录了，基于nodejs的gitbook命令会根据summary来生成文件。</p>
+<h2 id="nodejs-的gitbook使用"><a class="markdownIt-Anchor" href="#nodejs-的gitbook使用"></a> nodejs 的gitbook使用</h2>
+<p>GitBook支持输出以下几种文档格式：</p>
+<ul>
+<li>静态站点：GitBook默认输出该种格式</li>
+<li>PDF：需要安装gitbook-pdf依赖</li>
+<li>eBook：需要安装ebook-convert</li>
+</ul>
+<p>全局安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install gitbook gitbook-cli -g</div></pre></td></tr></table></figure>
+<p>初始化项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gitbook init</div></pre></td></tr></table></figure>
+<p>这里会直接生成 <code>readme.md</code> 和 <code>summary.md</code><br>
+如果要根据文件自动生成summary 需要安装 gitbook-summary</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install gitbook gitbook-summary -g</div><div class="line"><span class="comment"># 安装完毕后进入内容目录输入</span></div><div class="line">book sm</div></pre></td></tr></table></figure>
+<p>这样就会根据目录里面的内容自动生成<code>summary.md</code></p>
+<p>发布</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gitbook build <span class="comment">#生成html，可以直接提交到gitbook.com</span></div><div class="line">gitbook [pdf]|[epub]|[mobi] <span class="comment">#生成相应格式的图书</span></div></pre></td></tr></table></figure>
+<h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
+<p>如果在生成 pdf，epub或者mobi文件时产生错误 类似ebook-convert的，说明电脑里面没有安装<a href="https://calibre-ebook.com/" target="_blank" rel="external">Calibre</a> 去官网下载后直接安装就可以了</p>
+<h2 id="我的图书"><a class="markdownIt-Anchor" href="#我的图书"></a> 我的图书</h2>
+<p>第一本书 <a href="https://www.gitbook.com/book/zergtant/holy-bible-niv-chinese-translate/details" target="_blank" rel="external">中英双语NIV版圣经</a> 欢迎star</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-12-05</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/gitbook-guild/,人肉智能的全干开发工程师,Gitbook 入门教程,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/installing-mysql-zip-archive-on-windows/" title="windows下zip archive版本mysql绿色版（非服务启动）安装笔记" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>

@@ -80,12 +80,19 @@ Python基本语法
 <li><a href="#%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA">图像显示</a></li>
 </ul>
 </li>
-<li><a href="#opencv">OpenCV</a></li>
+<li><a href="#opencv">OpenCV</a>
+<ul>
+<li><a href="#windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85">windows环境下安装</a></li>
+<li><a href="#%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D">模块介绍</a></li>
+<li><a href="#%E4%B8%8Etf%E6%95%B4%E5%90%88">与tf整合</a></li>
+</ul>
+</li>
 </ul>
 </p>
 <h2 id="更新日志"><a class="markdownIt-Anchor" href="#更新日志"></a> 更新日志</h2>
 <p>2017.11.13 创建</p>
 <p>2017.11.18 增加numpy入门教程</p>
+<p>2017.12.06 增加opencv相关内容</p>
 <h2 id="人生苦短你需要python"><a class="markdownIt-Anchor" href="#人生苦短你需要python"></a> 人生苦短，你需要Python</h2>
 <p>Life is short, <s>Have an Affair</s> you need Python</p>
 <p>— Bruce Eckel</p>
@@ -207,7 +214,137 @@ Matplotlib中最基础的模块是pyplot。先从最简单的点图和线图开�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line"><span class="comment"># 读取一张小白狗的照片并显示</span></div><div class="line">plt.figure(<span class="string">'A Little White Dog'</span>)</div><div class="line">little_dog_img = plt.imread(<span class="string">'little_white_dog.jpg'</span>)</div><div class="line">plt.imshow(little_dog_img)</div><div class="line"></div><div class="line"><span class="comment"># Z是上小节生成的随机图案，img0就是Z，img1是Z做了个简单的变换</span></div><div class="line">img0 = Z</div><div class="line">img1 = <span class="number">3</span>*Z + <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment"># cmap指定为'gray'用来显示灰度图</span></div><div class="line">fig = plt.figure(<span class="string">'Auto Normalized Visualization'</span>)</div><div class="line">ax0 = fig.add_subplot(<span class="number">121</span>)</div><div class="line">ax0.imshow(img0, cmap=<span class="string">'gray'</span>)</div><div class="line"></div><div class="line">ax1 = fig.add_subplot(<span class="number">122</span>)</div><div class="line">ax1.imshow(img1, cmap=<span class="string">'gray'</span>)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h2 id="opencv"><a class="markdownIt-Anchor" href="#opencv"></a> OpenCV</h2>
 <p>OpenCV是计算机视觉领域应用最广泛的开源工具包,OpenCV最早源于Intel公司1998年的一个研究项目，当时在Intel从事计算机视觉的工程师盖瑞·布拉德斯基(Gary Bradski)访问一些大学和研究组时发现学生之间实现计算机视觉算法用的都是各自实验室里的内部代码或者库，这样新来实验室的学生就能基于前人写的基本函数快速上手进行研究。于是OpenCV旨在提供一个用于计算机视觉的科研和商业应用的高性能通用库。</p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-13</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/python-and-deeplearning/,人肉智能的全干开发工程师,为深度学习人员准备的Python快速入门教程,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/posts/centos-tomcat-session-slow/" title="Centos环境下Spring Boot集成的Tomcat第一次启动缓慢" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/posts/install-pysc2-on-windows-10/" title="win 10 下安装星际争霸2的ai项目deepmind pysc2指南" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+<h3 id="windows环境下安装"><a class="markdownIt-Anchor" href="#windows环境下安装"></a> windows环境下安装</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install opencv_python</div></pre></td></tr></table></figure>
+<p>验证：如果没报错，说明安装问没问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<h3 id="模块介绍"><a class="markdownIt-Anchor" href="#模块介绍"></a> 模块介绍</h3>
+<blockquote>
+<p>calib3d : Calibration（校准）加3D这两个词的组合缩写。这个模块主要是相机校准和三维重建相关的内容。基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。</p>
+</blockquote>
+<blockquote>
+<p>contrib : Contributed/Experimental Stuf的缩写， 该模块包含了一些最近添加的不太稳定的可选功能，不用去多管。2.4.8以后新增了新型人脸识别，立体匹配，人工视网膜模型等技术。<br>
+ <br>
+core——核心功能模块，包含如下内容：</p>
+<ul>
+<li>OpenCV基本数据结构</li>
+<li>动态数据结构</li>
+<li>绘图函数</li>
+<li>数组操作相关函数</li>
+<li>辅助功能与系统函数和宏</li>
+<li>与OpenGL的互操作</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>imgproc: Image和Processing这两个单词的缩写组合。图像处理模块，这个模块包含了如下内容：</p>
+<ul>
+<li>线性和非线性的图像滤波</li>
+<li>图像的几何变换</li>
+<li>其它（Miscellaneous）图像转换</li>
+<li>直方图相关</li>
+<li>结构分析和形状描述</li>
+<li>运动分析和对象跟踪</li>
+<li>特征检测</li>
+<li>目标检测等内容</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>features2d:Features2D， 2D功能框架 ，包含如下内容：</p>
+<ul>
+<li>特征检测和描述</li>
+<li>特征检测器（Feature Detectors）通用接口</li>
+<li>描述符提取器（Descriptor Extractors）通用接口</li>
+<li>描述符匹配器（Descriptor Matchers）通用接口</li>
+<li>通用描述符（Generic Descriptor）匹配器通用接口</li>
+<li>关键点绘制函数和匹配功能绘制函数</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>flann:Fast Library for Approximate Nearest Neighbors，高维的近似近邻快速搜索算法库，包含两个部分：</p>
+<ul>
+<li>快速近似最近邻搜索</li>
+<li>聚类</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>gpu:运用GPU加速的计算机视觉模块</p>
+</blockquote>
+<blockquote>
+<p>highgui:high gui，高层GUI图形用户界面，包含媒体的I / O输入输出，视频捕捉、图像和视频的编码解码、图形交互界面的接口等内容</p>
+</blockquote>
+<blockquote>
+<p>legacy:一些已经废弃的代码库，保留下来作为向下兼容，包含如下相关的内容：</p>
+<ul>
+<li>运动分析</li>
+<li>期望最大化</li>
+<li>直方图</li>
+<li>平面细分（C API）</li>
+<li>特征检测和描述（Feature Detection and Description）</li>
+<li>描述符提取器（Descriptor Extractors）的通用接口</li>
+<li>通用描述符（Generic Descriptor Matchers）的常用接口</li>
+<li>匹配器</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>ml : Machine Learning，机器学习模块， 基本上是统计模型和分类算法，包含如下内容：</p>
+<ul>
+<li>统计模型 （Statistical Models）</li>
+<li>一般贝叶斯分类器 （Normal Bayes Classifier）</li>
+<li>K-近邻 （K-NearestNeighbors）</li>
+<li>支持向量机 （Support Vector Machines）</li>
+<li>决策树 （Decision Trees）</li>
+<li>提升（Boosting）</li>
+<li>梯度提高树（Gradient Boosted Trees）</li>
+<li>随机树 （Random Trees）</li>
+<li>超随机树 （Extremely randomized trees）</li>
+<li>期望最大化 （Expectation Maximization）</li>
+<li>神经网络 （Neural Networks）</li>
+<li>MLData</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>nonfree:一些具有专利的算法模块 ，包含特征检测和GPU相关的内容。最好不要商用，可能会被告哦。</p>
+</blockquote>
+<blockquote>
+<p>objdetect:目标检测模块，包含Cascade Classification（级联分类）和Latent SVM这两个部分。</p>
+</blockquote>
+<blockquote>
+<p>ocl:OpenCL-accelerated Computer Vision，运用OpenCL加速的计算机视觉组件模块</p>
+</blockquote>
+<blockquote>
+<p>photo:Computational Photography，包含图像修复和图像去噪两部分</p>
+</blockquote>
+<blockquote>
+<p>stitching:images stitching，图像拼接模块，包含如下部分：</p>
+<ul>
+<li>拼接流水线</li>
+<li>特点寻找和匹配图像</li>
+<li>估计旋转</li>
+<li>自动校准</li>
+<li>图片歪斜</li>
+<li>接缝估测</li>
+<li>曝光补偿</li>
+<li>图片混合</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>superres:SuperResolution，超分辨率技术的相关功能模块</p>
+</blockquote>
+<blockquote>
+<p>ts:opencv测试相关代码</p>
+</blockquote>
+<blockquote>
+<p>vide:视频分析组件，该模块包括运动估计，背景分离，对象跟踪等视频处理相关内容。</p>
+</blockquote>
+<blockquote>
+<p>Videostab:Video stabilization，视频稳定相关的组件</p>
+</blockquote>
+<h3 id="与tf整合"><a class="markdownIt-Anchor" href="#与tf整合"></a> 与tf整合</h3>
+<p>1.TensorFlow与OpenCV，读取图片，进行简单操作并显示<br>
+1 OpenCV读入图片，使用tf.Variable初始化为tensor，加载到tensorflow对图片进行转置操作，然后opencv显示转置后的结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line">filename = <span class="string">"a.jpg"</span></div><div class="line">image = cv2.imread(filename, <span class="number">1</span>)</div><div class="line">cv2.namedWindow(<span class="string">'image'</span>, <span class="number">0</span>)</div><div class="line">cv2.imshow(<span class="string">'image'</span>, image)</div><div class="line"></div><div class="line"><span class="comment"># Create a TensorFlow Variable</span></div><div class="line">x = tf.Variable(image, name=<span class="string">'x'</span>)</div><div class="line"></div><div class="line">model = tf.initialize_all_variables()</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> session:</div><div class="line">  x = tf.transpose(x, perm=[<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>])</div><div class="line">  session.run(model)</div><div class="line">  result = session.run(x)</div><div class="line"></div><div class="line">cv2.namedWindow(<span class="string">'result'</span>, <span class="number">0</span>)</div><div class="line">cv2.imshow(<span class="string">'result'</span>, result)</div><div class="line">cv2.waitKey(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>2.OpenCV读入图片，使用tf.placeholder符号变量加载到tensorflow里，然后tensorflow对图片进行剪切操作，最后opencv显示转置后的结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"></div><div class="line"><span class="comment"># First, load the image again</span></div><div class="line">filename = <span class="string">"a.jpg"</span></div><div class="line">raw_image_data = cv2.imread(filename)</div><div class="line"></div><div class="line">image = tf.placeholder(<span class="string">"uint8"</span>, [<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">3</span>])</div><div class="line">slice = tf.slice(image, [<span class="number">1000</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">3000</span>, <span class="number">-1</span>, <span class="number">-1</span>])</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> session:</div><div class="line">    result = session.run(slice, feed_dict=&#123;image: raw_image_data&#125;)</div><div class="line">    print(result.shape)</div><div class="line"></div><div class="line">cv2.namedWindow(<span class="string">'image'</span>, <span class="number">0</span>)</div><div class="line">cv2.imshow(<span class="string">'image'</span>, result)</div><div class="line">cv2.waitKey(<span class="number">0</span>)</div></pre></td></tr></table></figure></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-11-13</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/python-and-deeplearning/,人肉智能的全干开发工程师,为深度学习人员准备的Python快速入门教程,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/posts/centos-tomcat-session-slow/" title="Centos环境下Spring Boot集成的Tomcat第一次启动缓慢" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/posts/install-pysc2-on-windows-10/" title="win 10 下安装星际争霸2的ai项目deepmind pysc2指南" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
 (function() {
  var hm = document.createElement("script");
  hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";

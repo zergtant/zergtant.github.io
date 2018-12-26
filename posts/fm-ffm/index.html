@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="tantai"><title>从FM和FFM说起的各种深度CTR预估模型 · 人肉智能</title><meta name="description" content="从FM和FFM说起的各种深度CTR预估模型（上）
+ 背景
+点击率(click-through rate, CTR)是互联网公司进行流量分配的核心依据之一。无论使用什么类型的模型，点利率这个命题可以被归纳到二元分类的问题，我们通过单个个体的特征，计算出对于某个内容，是否点击了，点击了就是1，没点击就是"><meta name="keywords" content="大数据,机器学习,深度学习,人工智能"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">人肉智能的全干开发工程师</a></h3><div class="description"><p>大数据，机器学习，AI，数据挖掘的从业者，机器算命爱好者。</p></div></div></div><ul class="social-links"><li><a href="http://github.com/zergtant"><i class="fa fa-github"></i></a></li></ul><div class="footer"><span>Theme by </span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/about">关于</a></li><li><a href="/website">有用的网站</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>从FM和FFM说起的各种深度CTR预估模型</a></h3></div><div class="post-content"><h1 id="从fm和ffm说起的各种深度ctr预估模型上"><a class="markdownIt-Anchor" href="#从fm和ffm说起的各种深度ctr预估模型上"></a> 从FM和FFM说起的各种深度CTR预估模型（上）</h1>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>点击率(click-through rate, CTR)是互联网公司进行流量分配的核心依据之一。无论使用什么类型的模型，点利率这个命题可以被归纳到二元分类的问题，我们通过单个个体的特征，计算出对于某个内容，是否点击了，点击了就是1，没点击就是0。对于任何二元分类的问题，最后我们都可以归结到逻辑回归上面。CTR预估技术从传统的Logistic回归，到近两年大火的深度学习，新的算法层出不穷：DeepFM, NFM, DIN, AFM, DCN等。其实这些算法都是特征工程方面的模型，无论最后怎么计算，最后一层都是一个二元分类的函数（sigmod为主）。</p>
+<p>早期的人工特征工程 + LR(Logistic Regression)：这个方式需要大量的人工处理，不仅需要对业务和行业有所了解，对于算法的经验要求也十分的高。</p>
+<p>GBDT(Gradient Boosting Decision Tree) + LR：提升树短时这方面的第二个里程碑，虽然也需要大量的人工处理，但是由于其的可解释性和提升树对于假例的权重提升，使得计算准确度有了很大的提高。</p>
+<p>FM-FFM:FM和FFM模型是最近几年提出的模型，并且在近年来表现突出，分别在由Criteo和Avazu举办的CTR预测竞赛中夺得冠军，使得到目前为止，还都是以此为主的主要模型占据主导位置。embeding模型可以理解为FFM的一个变体。</p>
+<p>融合模型：对于GBDT和FM，包括FM与神经网络，都是可以进行融合的，通过融合可以大大的提高准确度。</p>
+<h2 id="fm起因"><a class="markdownIt-Anchor" href="#fm起因"></a> FM起因</h2>
+<p>FM（Factorization Machine）是由Konstanz大学Steffen Rendle（现任职于Google）于2010年最早提出的，旨在解决稀疏数据下的特征组合问题。</p>
+<p>什么叫稀疏数据？</p>
+<p>稀疏数据是指在二维表中含有大量空值的数据；即稀疏数据是指，在数据集中绝大多数数值缺失或者为零的数据。</p>
+<p>为什么会出现稀疏数据？<br>
+对于机器学习领域来说，我们所有的输入的数据都是以数字表示的，为了更好的提取特征，一般例如分类，名称，性别，标签等数据我们都会对其进行One-Hot编码，经过编码之后只有一列是1，其余数据都是0，这就导致了大部分样本数据特征是比较稀疏的。</p>
+<p>例如我们的产品有100个分类，那么经过One-Hot编码后就会有100个特征但是这些特征里面只有一个特征为1，也使得这样特征空间剧增，这时候FM就出现了，</p>
+<h2 id="因子分解机factorization-machines-fm"><a class="markdownIt-Anchor" href="#因子分解机factorization-machines-fm"></a> 因子分解机(Factorization Machines, FM)</h2>
+<p>FM的论文地址：<a href="https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf" target="_blank" rel="external">https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf</a></p>
+<p>顾名思义，FM通过对于每一维特征的隐变量内积来提取特征组合，论上来讲FM可以对高阶特征组合进行建模，但实际上因为计算复杂度的原因一般都只用到了二阶特征组合。<br>
+FM借鉴了矩阵分解的方式，将原来的高维系数矩阵分解成由众多低维矩阵隐向量相乘的结果。</p>
+<p>说的通俗一点：在一般的线性模型中，是各个特征独立考虑的，没有考虑到特征与特征之间的相互关系。但实际上，大量的特征之间是有关联的，而FM就是通过将一个大的矩阵分解成2个小矩阵相乘的形式来提取各个特征之间的关联度。</p>
+<p>传统的Logistic Regression计算公式如下：<br>
+<img src="/image/fm-ffm/1.jpg" alt="sigmod"></p>
+<p>FM模型其实就是对特征两两相乘（组合）构成新特征(离散化之后其实就是“且”操作)，并对每个新特征分配独立的权重，通过机器学习来自动得到这些权重。将其写成矩阵形式为：<br>
+<img src="/image/fm-ffm/2.jpg" alt="fm"><br>
+FM模型中特征两两相乘（组合）的权重是相互不独立的，它是一种参数较少但表达力强的模型</p>
+<h2 id="基于领域的因子分解机field-aware-factorization-machinesffm"><a class="markdownIt-Anchor" href="#基于领域的因子分解机field-aware-factorization-machinesffm"></a> 基于领域的因子分解机（Field-aware Factorization Machines，FFM）</h2>
+<p>FFM的论文地址：<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf" target="_blank" rel="external">https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf</a></p>
+<p>FM中间的一个核心步骤就是嵌入，但这个嵌入过程没有考虑领域信息。这使得同领域内的特征也被当做不同领域特征进行两两组合了。<br>
+同领域的特征嵌入后直接求和作为一个整体嵌入向量，进而与其他领域的整体嵌入向量进行两两组合。而这个先嵌入后求和的过程，就是一个单领域的小离散特征向量乘以矩阵的过程。<br>
+FFM也是FM的另一种变体，也考虑了领域信息。但其不同点是同一个特征与不同领域进行特征组合时，其对应的嵌入向量是不同的<br>
+说的简单一点FFM通过引入field的概念，FFM把相同性质的特征归于同一个field，这样使得某些同领域的特征不进行组合。<br>
+<img src="/image/fm-ffm/3.png" alt="ffm"><br>
+FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型</p>
+<p>为了使用FFM方法，所有的特征必须转换成“field_id:feat_id:value”格式，field_id代表特征所属field的编号，feat_id是特征编号，value是特征的值</p>
+<h2 id="fm的特点和优势"><a class="markdownIt-Anchor" href="#fm的特点和优势"></a> FM的特点和优势</h2>
+<ol>
+<li>可以在非常稀疏的数据中进行合理的参数估计</li>
+<li>FM模型的时间复杂度是线性的</li>
+<li>FM是一个通用模型，它可以用于任何特征为实值的情况</li>
+</ol>
+<h2 id="embeddingmlp深度学习ctr预估的通用框架"><a class="markdownIt-Anchor" href="#embeddingmlp深度学习ctr预估的通用框架"></a> embedding+MLP：深度学习CTR预估的通用框架</h2>
+<p>embedding+MLP是对于分领域离散特征进行深度学习CTR预估的通用框架。深度学习在特征组合挖掘(特征学习)方面具有很大的优势。比如以CNN为代表的深度网络主要用于图像、语音等稠密特征上的学习，以W2V、RNN为代表的深度网络主要用于文本的同质化、序列化高维稀疏特征的学习。CTR预估的主要场景是对离散且有具体领域的特征进行学习，所以其深度网络结构也不同于CNN与RNN。 具体来说， embedding+MLP的过程如下：</p>
+<p>对不同领域的one-hot特征进行嵌入（embedding），使其降维成低维度稠密特征。然后将这些特征向量拼接（concatenate）成一个隐含层。之后再不断堆叠全连接层，也就是多层感知机(Multilayer Perceptron, MLP，有时也叫作前馈神经网络)。最终输出预测的点击率。</p>
+<p>这个模型可以参考fast.ai的Tabular 模块https://docs.fast.ai/tabular.html</p>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<p><a href="https://tech.meituan.com/deep_understanding_of_ffm_principles_and_practices.html" target="_blank" rel="external">https://tech.meituan.com/deep_understanding_of_ffm_principles_and_practices.html</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-12-25</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://www.tantai.org/posts/fm-ffm/,人肉智能的全干开发工程师,从FM和FFM说起的各种深度CTR预估模型,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/posts/puppeteer-install/" title="puppeteer安装遇到 Error:Chromium revision is not downloaded.的解决办法" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script>var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "https://hm.baidu.com/hm.js?215ef6fdd9b4757230418bbdaf4b74dc";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();</script></body></html>
